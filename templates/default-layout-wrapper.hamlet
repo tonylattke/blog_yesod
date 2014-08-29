@@ -1,33 +1,81 @@
-\<!doctype html>
+<!DOCTYPE html>
 \<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 \<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
 \<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 \<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en"> <!--<![endif]-->
+<html class="no-js" lang="en">
+
     <head>
-        <meta charset="UTF-8">
-
-        <title>#{pageTitle pc}
-        <meta name="description" content="">
-        <meta name="author" content="">
-
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Blog with Yesod Framework">
+        <meta name="author" content="Tony Lattke">
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
-        ^{pageHead pc}
+        <title> Yesod - Blog #{pageTitle pc}
 
+        ^{pageHead pc}
         \<!--[if lt IE 9]>
         \<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         \<![endif]-->
 
-        <script>
-          document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/,'js');
+        <!-- This template com from http://startbootstrap.com/all-templates -->
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css">
+
+        <!-- Add custom CSS here -->
+        <link href="/static/css/main.css" rel="stylesheet" type="text/css">
+
     <body>
         <div class="container">
             <header>
             <div id="main" role="main">
-              ^{pageBody pc}
+             
+              <a href="/home">
+            <img id="banner" src="http://placehold.it/1170x300" class="img-responsive">
+                <div class="row">
+                    <div class="col-lg-8">
+                         ^{pageBody pc}
+
+                    <div class="col-lg-4">
+                        <!-- list of years -->
+                        <div class="well">
+                            <h4>Last posts
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="/year/2014">2014
+                        <!-- list of years -->
+
+                        <!-- New Post -->
+                        <div class="well">
+                            <a href="/post/new">Create Post
+                        <!-- New Post -->
+
+                        <!-- Logout -->
+                        <div class="well">
+                            <a href="/logout">Logout
+                        <!-- Logout -->
+
+                        <div class="well">
+                            <a href="/posts.json">Export all posts to Json
+
+                        <div class="well">
+                            <img src="/static/img/logo-tony.png" id="logo">
+
+            <hr>
+
             <footer>
-                #{extraCopyright $ appExtra $ settings master}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Developed by Tony Lattke - Yesod Blog 2014
+                        <p>#{extraCopyright $ appExtra $ settings master}
+
+            <!-- /.container -->
+
+            <!-- JavaScript -->
+            <script src="/static/js/jquery-1.10.2.js"></script>
+            <script src="/static/js/bootstrap.js"></script>
+            <script src="/static/js/base.js"></script>
 
         $maybe analytics <- extraAnalytics $ appExtra $ settings master
             <script>
