@@ -3,28 +3,23 @@
 -- In addition, you can configure a number of different aspects of Yesod
 -- by overriding methods in the Yesod typeclass. That instance is
 -- declared in the Foundation.hs file.
-module Settings
-    ( widgetFile
-    , PersistConfig
-    , staticRoot
-    , staticDir
-    , Extra (..)
-    , parseExtra
-    ) where
+module Settings where
 
 import Prelude
 import Text.Shakespeare.Text (st)
 import Language.Haskell.TH.Syntax
 import Database.Persist.Sqlite (SqliteConf)
 import Yesod.Default.Config
-import qualified Yesod.Default.Util
+import Yesod.Default.Util
 import Data.Text (Text)
 import Data.Yaml
 import Control.Applicative
 import Settings.Development
+import Data.Default (def)
+import Text.Hamlet
 
 -- | Which Persistent backend this site is using.
-type PersistConfig = SqliteConf
+type PersistConf = SqliteConf
 
 -- Static setting below. Changing these requires a recompile
 
@@ -49,13 +44,26 @@ staticDir = "static"
 staticRoot :: AppConfig DefaultEnv x -> Text
 staticRoot conf = [st|#{appRoot conf}/static|]
 
+-- | Settings for 'widgetFile', such as which template languages to support and
+-- default Hamlet settings.
+--
+-- For more information on modifying behavior, see:
+--
+-- https://github.com/yesodweb/yesod/wiki/Overriding-widgetFile
+widgetFileSettings :: WidgetFileSettings
+widgetFileSettings = def
+    { wfsHamletSettings = defaultHamletSettings
+        { hamletNewlines = AlwaysNewlines
+        }
+    }
 
 -- The rest of this file contains settings which rarely need changing by a
 -- user.
 
 widgetFile :: String -> Q Exp
-widgetFile = if development then Yesod.Default.Util.widgetFileReload
-                            else Yesod.Default.Util.widgetFileNoReload
+widgetFile = (if development then widgetFileReload
+                             else widgetFileNoReload)
+              widgetFileSettings
 
 data Extra = Extra
     { extraCopyright :: Text

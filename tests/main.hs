@@ -5,18 +5,19 @@
 module Main where
 
 import Import
-import Settings
-import Yesod.Logger (defaultDevelopmentLogger)
 import Yesod.Default.Config
 import Yesod.Test
+import Test.Hspec (hspec)
 import Application (makeFoundation)
 
 import HomeTest
 
-main :: IO a
+main :: IO ()
 main = do
-    conf <- loadConfig $ (configSettings Testing) { csParseExtra = parseExtra }
-    logger <- defaultDevelopmentLogger
-    foundation <- makeFoundation conf logger
-    app <- toWaiAppPlain foundation
-    runTests app (connPool foundation) homeSpecs
+    conf <- Yesod.Default.Config.loadConfig $ (configSettings Testing)
+                { csParseExtra = parseExtra
+                }
+    foundation <- makeFoundation conf
+    hspec $ do
+        yesodSpec foundation $ do
+            homeSpecs
