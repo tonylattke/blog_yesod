@@ -1,1 +1,18 @@
-test
+$if null posts
+    <p> No Posts
+$else
+    $forall Entity postId post <- posts
+        <h1 id=#{show postId}>
+            <a href="@{PostR postId}"> #{postName post}
+            <a class="btn" href="/post_edit/#{show postId}">Edit
+            <a class="btn btn-primary pull-right delete_post">X
+        <p>
+            <!-- <span class="glyphicon glyphicon-time"> -->
+            Posted on #{show $ postDate post}
+        #{postText post}
+        <br>
+        <br>
+        <a class="btn btn-primary" href=@{PostR postId}>
+            Read More 
+            <!-- <span class="glyphicon glyphicon-chevron-right"> -->
+        <hr>

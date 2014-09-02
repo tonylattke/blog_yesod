@@ -1,0 +1,31 @@
+<h1 id=#{show postId}>
+    #{postName post}
+<p> 
+    #{postText post}
+
+<hr>
+
+<!-- the comment box -->
+<div class="well">
+    <form role="form" method="post" action="/make_comment/{{postId}}">
+        <h4>Name:
+        <div class="form-group">
+            <textarea name="comment_name" class="form-control" rows="1">
+        <h4>Leave a Comment:
+        <div class="form-group">
+            <textarea name="comment_text" class="form-control" rows="3">
+        
+        <button type="submit" class="btn btn-primary">Submit
+
+<hr>
+
+<!-- the comments -->
+{% if comments %}
+    {% for comment in comments %}
+        <h3> {{comment.name}}
+            <small>{{comment.date}}
+
+        {{comment.text|linebreaks}}
+    {% endfor %}
+{% else %}
+    <p>No comments

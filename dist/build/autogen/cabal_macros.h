@@ -119,6 +119,13 @@
   (major1) == 1 && (major2) <  1 || \
   (major1) == 1 && (major2) == 1 && (minor) <= 1)
 
+/* package time-1.4.2 */
+#define VERSION_time "1.4.2"
+#define MIN_VERSION_time(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  4 || \
+  (major1) == 1 && (major2) == 4 && (minor) <= 2)
+
 /* package wai-extra-3.0.2 */
 #define VERSION_wai_extra "3.0.2"
 #define MIN_VERSION_wai_extra(major1,major2,minor) (\

@@ -21,18 +21,17 @@
 
         <!-- This template com from http://startbootstrap.com/all-templates -->
         <!-- Bootstrap core CSS -->
-        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="@{StaticR css_bootstrap_css}" rel="stylesheet" type="text/css">
 
         <!-- Add custom CSS here -->
-        <link href="/static/css/main.css" rel="stylesheet" type="text/css">
+        <link href="@{StaticR css_main_css}" rel="stylesheet" type="text/css">
 
     <body>
         <div class="container">
             <header>
             <div id="main" role="main">
-             
-              <a href="/home">
-            <img id="banner" src="http://placehold.it/1170x300" class="img-responsive">
+                <a href="@{HomeR}">
+                    <img id="banner" src="http://placehold.it/1170x300" class="img-responsive">
                 <div class="row">
                     <div class="col-lg-8">
                          ^{pageBody pc}
@@ -48,7 +47,7 @@
 
                         <!-- New Post -->
                         <div class="well">
-                            <a href="/post/new">Create Post
+                            <a href="/post_new">Create Post
                         <!-- New Post -->
 
                         <!-- Logout -->
@@ -60,7 +59,7 @@
                             <a href="/posts.json">Export all posts to Json
 
                         <div class="well">
-                            <img src="/static/img/logo-tony.png" id="logo">
+                            <img src="@{StaticR img_logo_tony_png}" id="logo">
 
             <hr>
 
@@ -73,9 +72,9 @@
             <!-- /.container -->
 
             <!-- JavaScript -->
-            <script src="/static/js/jquery-1.10.2.js"></script>
-            <script src="/static/js/bootstrap.js"></script>
-            <script src="/static/js/base.js"></script>
+            <script src="@{StaticR js_jquery_1_10_2_js}"></script>
+            <script src="@{StaticR js_bootstrap_js}"></script>
+            <script src="@{StaticR js_base_js}"></script>
 
         $maybe analytics <- extraAnalytics $ appExtra $ settings master
             <script>
