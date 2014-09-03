@@ -1,5 +1,10 @@
 <h1 id=#{show postId}>
     #{postName post}
+    <a class="btn" href="/post_edit/#{show postId}">Edit
+    <a class="btn btn-primary pull-right delete_post">X
+
+<p>
+    Posted on #{show $ postDay post} #{show $ postHour post}
 <p> 
     #{postText post}
 
@@ -20,12 +25,14 @@
 <hr>
 
 <!-- the comments -->
-{% if comments %}
-    {% for comment in comments %}
-        <h3> {{comment.name}}
-            <small>{{comment.date}}
 
-        {{comment.text|linebreaks}}
-    {% endfor %}
-{% else %}
+<!-- 
+$if null comments
     <p>No comments
+$else
+    $forall Entity commentId comment <- comments
+        <h3> #{commentName comment}
+            <small> #{show $ commentDay comment} #{show $ commentHour comment}
+        <p>
+            #{CommentText comment}
+-->

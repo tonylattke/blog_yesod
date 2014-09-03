@@ -6,7 +6,8 @@ entryForm :: Form Post
 entryForm = renderDivs $ Post
 	<$> areq   textField "name" Nothing
 	<*> areq   textField "text" Nothing
-	<*> areq   timeField "date" Nothing
+	<*> areq   timeField "hour" Nothing
+	<*> areq   dayField  "day" 	Nothing
 
 getPostR :: PostId -> Handler RepHtml
 getPostR postId = do
