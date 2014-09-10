@@ -2,17 +2,18 @@ $if null posts
     <p> No Posts
 $else
     $forall Entity postId post <- posts
-        <h1 id=#{show postId}>
+        <h1 id=#{toPathPiece postId}>
             <a href="@{PostR postId}"> #{postName post}
-            <a class="btn" href="/post_edit/#{show postId}">Edit
+            <a class="btn" href="@{PostEditR postId}">Edit
             <a class="btn btn-primary pull-right delete_post">X
+            <form method="post" id="form_delete_post" action="/delete/#{toPathPiece postId}">
         <p>
-            <!-- <span class="glyphicon glyphicon-time"> -->
-            Posted on #{show $ postDay post} #{show $ postHour post}
+            <span class="glyphicon glyphicon-time">
+            Posted on #{show $ postDate post}
         #{postText post}
         <br>
         <br>
         <a class="btn btn-primary" href=@{PostR postId}>
             Read More 
-            <!-- <span class="glyphicon glyphicon-chevron-right"> -->
+            <span class="glyphicon glyphicon-chevron-right">
         <hr>

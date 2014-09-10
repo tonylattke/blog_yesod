@@ -14,14 +14,13 @@
 
         <title> Yesod - Blog #{pageTitle pc}
 
+        <!-- This template com from http://startbootstrap.com/all-templates -->
+        <!-- Bootstrap core CSS -->
         ^{pageHead pc}
+        
         \<!--[if lt IE 9]>
         \<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         \<![endif]-->
-
-        <!-- This template com from http://startbootstrap.com/all-templates -->
-        <!-- Bootstrap core CSS -->
-        <link href="@{StaticR css_bootstrap_css}" rel="stylesheet" type="text/css">
 
         <!-- Add custom CSS here -->
         <link href="@{StaticR css_main_css}" rel="stylesheet" type="text/css">
@@ -75,6 +74,7 @@
             <script src="@{StaticR js_jquery_1_10_2_js}"></script>
             <script src="@{StaticR js_bootstrap_js}"></script>
             <script src="@{StaticR js_base_js}"></script>
+            <script src="/static/js/post.js"></script>
 
         $maybe analytics <- extraAnalytics $ appExtra $ settings master
             <script>

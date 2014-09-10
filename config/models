@@ -14,14 +14,12 @@ Email
 Post
 	name Text
 	text Text
-	hour TimeOfDay default=CURRENT_TIME
-	day Day default=CURRENT_TIME
+	date UTCTime default=CURRENT_TIME
 	deriving Show
 
 Comment
 	post PostId
 	name Text
 	text Text
-	hour TimeOfDay default=CURRENT_TIME
-	day Day default=CURRENT_TIME
+	date UTCTime default=CURRENT_TIME
 	deriving Show

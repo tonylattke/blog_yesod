@@ -1,0 +1,15 @@
+<form method=post enctype=#{enctype} id="form_edit_post">
+    <input type="hidden" name="_token" value="#{fromJust maybetoken}">
+    <h4>Name:
+    <div class="required form-group">
+        <textarea id="hident1" name="f1" name="name" id="post_name" class="form-control" rows="1" autofocus="autofocus" required>#{postName post}
+
+    <h4>Text:
+    <div class="required form-group">
+        <textarea id="hident3" name="f2" class="form-control" required>#{postText post}
+    
+    <br>
+    
+    <div>
+        <input class="btn btn-primary" type="submit" value="Update">
+        <!-- <div id="create_post" class="btn btn-primary">Create Post</div>  action="/post/new_do"-->

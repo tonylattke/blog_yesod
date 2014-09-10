@@ -1,10 +1,11 @@
-<h1 id=#{show postId}>
+<h1 id=#{toPathPiece postId}>
     #{postName post}
-    <a class="btn" href="/post_edit/#{show postId}">Edit
+    <a class="btn" href="@{PostEditR postId}">Edit
     <a class="btn btn-primary pull-right delete_post">X
-
+    <form method="post" id="form_delete_post" action="/delete/#{toPathPiece postId}">
 <p>
-    Posted on #{show $ postDay post} #{show $ postHour post}
+    <span class="glyphicon glyphicon-time">
+    Posted on #{show $ postDate post}
 <p> 
     #{postText post}
 
@@ -12,7 +13,7 @@
 
 <!-- the comment box -->
 <div class="well">
-    <form role="form" method="post" action="/make_comment/{{postId}}">
+    <form role="form" method="post" action="/make_comment/#{toPathPiece postId}">
         <h4>Name:
         <div class="form-group">
             <textarea name="comment_name" class="form-control" rows="1">
