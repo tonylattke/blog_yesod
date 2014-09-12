@@ -6,7 +6,7 @@
 
     <h4>Text:
     <div class="required form-group">
-        <textarea id="hident3" name="f2" class="form-control" required>#{postText post}
+        <textarea id="hident2" name="f2" class="form-control" required>#{postText post}
     
     <br>
     

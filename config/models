@@ -12,14 +12,14 @@ Email
  -- By default this file is used in Model.hs (which is imported by Foundation.hs)
 
 Post
-	name Text
-	text Text
-	date UTCTime default=CURRENT_TIME
-	deriving Show
+    name Text
+    text Text
+    date UTCTime default=CURRENT_TIME
+    deriving Show
 
 Comment
-	post PostId
-	name Text
-	text Text
-	date UTCTime default=CURRENT_TIME
-	deriving Show
+    post PostId
+    name Text
+    text Text
+    date UTCTime default=CURRENT_TIME
+    deriving Show

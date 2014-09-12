@@ -6,11 +6,9 @@
 
     <h4>Text:
     <div class="required form-group">
-        <textarea id="hident3" name="f2" class="form-control" required value="">
+        <textarea id="hident2" name="f2" class="form-control" required value="">
     
     <br>
     
     <div>
-        <input class="btn btn-primary" type="submit" value="Create Post">
-        <!-- <div id="create_post" class="btn btn-primary">Create Post</div>  action="/post/new_do"-->
-
+        <div id="create_post" class="btn btn-primary">Create Post

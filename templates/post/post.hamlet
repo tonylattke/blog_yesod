@@ -13,27 +13,26 @@
 
 <!-- the comment box -->
 <div class="well">
-    <form role="form" method="post" action="/make_comment/#{toPathPiece postId}">
+    
+    <form method=post id="form_new_comment" action="/comment/#{toPathPiece postId}">
+        <input type="hidden" name="_token" value="#{fromJust maybetoken}">
         <h4>Name:
         <div class="form-group">
-            <textarea name="comment_name" class="form-control" rows="1">
+            <textarea id="comment_name" name="comment_name" class="form-control" rows="1">
         <h4>Leave a Comment:
         <div class="form-group">
-            <textarea name="comment_text" class="form-control" rows="3">
+            <textarea id="comment_text" name="comment_text" class="form-control" rows="3">
         
-        <button type="submit" class="btn btn-primary">Submit
-
+        <div id="create_comment" class="btn btn-primary">Submit
 <hr>
 
 <!-- the comments -->
 
-<!-- 
 $if null comments
     <p>No comments
 $else
-    $forall Entity commentId comment <- comments
+    $forall Entity _ comment <- comments
         <h3> #{commentName comment}
-            <small> #{show $ commentDay comment} #{show $ commentHour comment}
+            <small> #{show $ commentDate comment}
         <p>
-            #{CommentText comment}
--->
+            #{commentText comment}
