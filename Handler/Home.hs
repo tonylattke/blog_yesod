@@ -3,12 +3,16 @@ module Handler.Home where
 
 import Import
 
+-- import Prelude (head,last)
+import Data.Time
+
 getHomeR :: Handler Html
 getHomeR = do
-    --(formWidget, formEnctype) <- generateFormPost sampleForm
-    --let submission = Nothing :: Maybe (FileInfo, Text)
-    --    handlerName = "getHomeR" :: Text
     posts <- runDB $ selectList [] [Desc PostDate]
+    -- last_day <- fmap utctDay (postDate $ head posts)
+    -- let (last_year, _, _) = toGregorian last_day
+    -- first_day <- fmap utctDay (postDate $ last posts)
+    -- let (first_year, _, _) = toGregorian first_day
     defaultLayout $ do
         aDomId <- newIdent
         setTitle ""
@@ -16,9 +20,11 @@ getHomeR = do
 
 getYearR :: Integer -> Handler Html
 getYearR year = do
-    allPosts <- runDB $ selectList [] [Desc PostDate]
-    let posts = allPosts
+    let from_date = fromGregorian year 1 1
+        to_date = fromGregorian (year+1) 1 1
+        time = timeOfDayToTime $ TimeOfDay 0 0 0
+    posts <- runDB $ selectList [PostDate >. UTCTime from_date time, PostDate <. UTCTime to_date time] [Desc PostDate]
     defaultLayout $ do
         aDomId <- newIdent
-        setTitle "Blog"
+        setTitle $ toHtml $ ": " ++ (show year)
         $(widgetFile "homepage")

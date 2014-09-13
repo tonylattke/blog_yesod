@@ -6,4 +6,4 @@ Requirements:
 - Yesod framework 1.2.12.4
 - Sqlite3
 
-To do: json, login, years and admin
+To do: json, login, list of years and admin
