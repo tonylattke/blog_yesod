@@ -40,8 +40,9 @@
                         <div class="well">
                             <h4>Last posts
                                 <ul class="list-unstyled">
-                                    <li>
-                                        <a href="/year/2014">2014
+                                    $forall year <- years
+                                        <li>
+                                            <a href="/year/#{year}">#{year}
                         <!-- list of years -->
 
                         <!-- New Post -->

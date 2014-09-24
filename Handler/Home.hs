@@ -3,16 +3,11 @@ module Handler.Home where
 
 import Import
 
--- import Prelude (head,last)
 import Data.Time
 
 getHomeR :: Handler Html
 getHomeR = do
     posts <- runDB $ selectList [] [Desc PostDate]
-    -- last_day <- fmap utctDay (postDate $ head posts)
-    -- let (last_year, _, _) = toGregorian last_day
-    -- first_day <- fmap utctDay (postDate $ last posts)
-    -- let (first_year, _, _) = toGregorian first_day
     defaultLayout $ do
         aDomId <- newIdent
         setTitle ""

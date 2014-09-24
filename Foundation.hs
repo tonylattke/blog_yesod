@@ -19,6 +19,7 @@ import Text.Jasmine (minifym)
 import Text.Hamlet (hamletFile)
 import Yesod.Core.Types (Logger)
 
+import Data.Time
 
 -- | The site argument for your application. This can be a good place to
 -- keep settings and values requiring initialization before your application
@@ -50,6 +51,16 @@ mkYesodData "App" $(parseRoutesFile "config/routes")
 
 type Form x = Html -> MForm (HandlerT App IO) (FormResult x, Widget)
 
+-- Extract Year from UTCTime
+getYear :: UTCTime -> Integer
+getYear time = 
+    let (year,_,_) = toGregorian $ utctDay time
+    in year
+
+-- Remove Duplicates on list
+removeDuplicates :: Eq a => [a] -> [a]
+removeDuplicates l = foldr (\x seen -> if x `elem` seen then seen else x : seen) [] l
+
 -- Please see the documentation for the Yesod typeclass. There are a number
 -- of settings which can be configured by overriding methods here.
 instance Yesod App where
@@ -78,6 +89,8 @@ instance Yesod App where
             -- $(widgetFile "normalize")
             -- addStylesheet $ StaticR css_bootstrap_css
             $(widgetFile "default-layout")
+        all_posts <- runDB $ selectList [] [Desc PostDate]
+        let years = removeDuplicates $ map (getYear . postDate . entityVal) all_posts
         giveUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")
 
     -- This is done to provide an optimization for serving static files from
