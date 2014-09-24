@@ -9,6 +9,8 @@ import Data.Typeable (Typeable)
 import Prelude
 import Data.Time
 
+import Control.Applicative ((<$>), (<*>))
+
 -- You can define all of your database entities in the entities file.
 -- You can find more information on persistent and how to declare entities
 -- at:
@@ -35,3 +37,11 @@ instance ToJSON (Entity Comment) where
         , "text" .= commentText c
         , "date" .= commentDate c
         ]
+
+instance FromJSON Post where
+    parseJSON (Object o) = Post
+        <$> o .: "name"
+        <*> o .: "text"
+        <*> o .: "date"
+
+    parseJSON _ = fail "Invalid todo"
