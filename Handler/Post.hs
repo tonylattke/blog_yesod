@@ -85,3 +85,10 @@ postCommentNewR postId = do
     current_time <- liftIO getCurrentTime
     _ <- runDB $ insert $ Comment postId (fromJust name) (fromJust text) current_time
     redirect $ PostR postId 
+
+-- Get posts json
+getPostsJsonR :: Handler Value
+getPostsJsonR = do
+    posts <- runDB $ selectList [] [Desc PostDate]
+    comments <- runDB $ selectList [] [Desc CommentDate]
+    return $ object ["posts" .= posts, "comments" .= comments]

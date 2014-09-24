@@ -12,3 +12,4 @@
 /delete/#PostId		PostDeleteR	POST
 /post/#PostId		PostR 		GET
 /comment/#PostId	CommentNewR	POST
+/posts.json			PostsJsonR 	GET
